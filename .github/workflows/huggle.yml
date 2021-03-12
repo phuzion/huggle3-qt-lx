@@ -19,7 +19,6 @@ jobs:
           if ($path) {
           & $path $args
           }
-          $env:$Qt5_Dir
           dir env:
           ./veyor.ps1 -msbuild_path $msbuildpath -qt5path $Qt5_Dir
 
