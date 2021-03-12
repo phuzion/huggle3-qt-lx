@@ -13,9 +13,13 @@ jobs:
       - uses: microsoft/setup-msbuild@v1.0.2
       - run: vswhere
       - name: set msbuild location variable
-        run: $msbuild = vswhere -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | select-object -first 1
+        run: |
+          $msbuildpath = vswhere -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | select-object -first 1
+          if ($path) {
+          & $path $args
+          } 
         shell: pwsh
-      - run: echo $msbuild
+      - run: echo $msbuildpath
       - name: run appveyor script
         shell: pwsh
         working-directory: ./windows64
