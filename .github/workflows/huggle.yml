@@ -14,7 +14,7 @@ jobs:
       - run: dir
       - name: run appveyor script
         working-directory: ./windows64
-        run: pwd
+        run: veyor.ps1
 
 
   build-linux:
