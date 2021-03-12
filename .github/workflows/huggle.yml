@@ -15,7 +15,7 @@ jobs:
       - name: run appveyor script
         shell: pwsh
         working-directory: ./windows64
-        run: ./veyor.ps1 -msbuild_path=$MSBuildBinPath
+        run: ./veyor.ps1 -msbuild_path=C:\foobar\test
 
 
   build-linux:
