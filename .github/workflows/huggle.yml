@@ -7,6 +7,7 @@ jobs:
     runs-on: windows-latest
     env:
       QTTYPE: 5
+      working-directory: ./windows
     steps:
       - uses: actions/checkout@v2
       - uses: jurplel/install-qt-action@v2
