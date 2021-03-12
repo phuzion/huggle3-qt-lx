@@ -9,7 +9,7 @@ jobs:
       QTTYPE: 5
     steps:
       - uses: actions/checkout@v2
-      - uses: jurplel/install-qt-actions@v2
+      - uses: jurplel/install-qt-action@v2
       - run: windows/release.ps1
 
 
