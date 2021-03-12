@@ -11,20 +11,15 @@ jobs:
       - uses: actions/checkout@v2
       - uses: jurplel/install-qt-action@v2
       - uses: microsoft/setup-msbuild@v1.0.2
-      - run: vswhere
-      - name: set msbuild location variable
+      - name: run appveyor script
+        shell: pwsh
+        working-directory: ./windows64
         run: |
           $msbuildpath = vswhere -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | select-object -first 1
           if ($path) {
           & $path $args
-          } 
-          echo $msbuildpath
-        shell: pwsh
-      - run: echo $msbuildpath
-      - name: run appveyor script
-        shell: pwsh
-        working-directory: ./windows64
-        run: ./veyor.ps1 -msbuild_path $msbuildpath
+          }
+          ./veyor.ps1 -msbuild_path $msbuildpath
 
 
   build-linux:
