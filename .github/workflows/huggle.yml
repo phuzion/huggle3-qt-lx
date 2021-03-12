@@ -7,6 +7,7 @@ jobs:
     runs-on: windows-latest
     env:
       QTTYPE: 5
+      Qt5_Dir: $Qt5_Dir
     steps:
       - uses: actions/checkout@v2
       - uses: jurplel/install-qt-action@v2
@@ -19,7 +20,6 @@ jobs:
           if ($path) {
           & $path $args
           }
-          dir env:
           ./veyor.ps1 -msbuild_path $msbuildpath -qt5path $Qt5_Dir
 
 
