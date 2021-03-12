@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: jurplel/install-qt-action@v2
-      - run: windows/release.ps1
+      - run: release.ps1
 
 
   build-linux:
