@@ -7,11 +7,11 @@ jobs:
     runs-on: windows-latest
     env:
       QTTYPE: 5
-      working-directory: ./windows
+      working-directory: ./windows64
     steps:
       - uses: actions/checkout@v2
       - uses: jurplel/install-qt-action@v2
-      - run: release.ps1
+      - run: veyor.ps1
 
 
   build-linux:
