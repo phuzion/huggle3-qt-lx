@@ -11,12 +11,10 @@ jobs:
       - uses: actions/checkout@v2
       - uses: jurplel/install-qt-action@v2
       - uses: microsoft/setup-msbuild@v1.0.2
-        with:
-          vs-version: '14.0'
       - name: run appveyor script
         shell: pwsh
         working-directory: ./windows64
-        run: ./veyor.ps1
+        run: ./veyor.ps1 -msbuild_path=$MSBuildBinPath
 
 
   build-linux:
