@@ -4,13 +4,12 @@ on: push
 
 jobs:
   build-linux:
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
     env:
       QTTYPE: 5
     steps:
       - uses: actions/checkout@v2
-      - run: pwd
-      - run: travis/before_install.sh
+      - run: sudo apt-get update
       - run: travis/install.sh
       - run: travis/before_script.sh
       - run: travis/script.sh
