@@ -18,6 +18,7 @@ jobs:
           if ($path) {
           & $path $args
           } 
+          echo $msbuildpath
         shell: pwsh
       - run: echo $msbuildpath
       - name: run appveyor script
