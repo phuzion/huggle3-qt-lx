@@ -13,7 +13,7 @@ jobs:
       - uses: microsoft/setup-msbuild@v1.0.2
       - run: echo "Qt dir: $Qt5_Dir"
       - name: run appveyor script
-        shell: poertdhrll
+        shell: pwsh
         working-directory: ./windows64
         run: |
           $msbuildpath = vswhere -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | select-object -first 1
