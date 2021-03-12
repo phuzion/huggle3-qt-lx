@@ -10,6 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: jurplel/install-qt-action@v2
+      - uses: microsoft/setup-msbuild@v1.0.2
       - run: pwd
       - run: dir
       - name: run appveyor script
