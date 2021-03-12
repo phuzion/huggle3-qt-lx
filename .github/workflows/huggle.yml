@@ -13,7 +13,7 @@ jobs:
       - uses: microsoft/setup-msbuild@v1.0.2
       - run: vswhere
       - name: set msbuild location variable
-        run: $msbuildpath = vswhere -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | select-object -first 1
+        run: vswhere -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | select-object -first 1
         shell: pwsh
       - name: run appveyor script
         shell: pwsh
