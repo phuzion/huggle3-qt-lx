@@ -3,7 +3,8 @@ name: huggle
 on: push
 
 jobs:
-  Build for Linux:
+  build-linux:
+    name: Linux
     runs-on: ubuntu-latest
     env:
       QTTYPE: 5
@@ -14,7 +15,8 @@ jobs:
       - run: travis/before_script.sh
       - run: travis/script.sh
 
-  Build for macOS:
+  build-macos:
+    name: macOS
     runs-on: macos-10.15
     env:
       QTTYPE: 5
@@ -28,7 +30,8 @@ jobs:
       - run: travis/before_script_osx.sh
       - run: travis/script_osx.sh
 
-  Build for Windows:
+  build-windows:
+    name: Windows
     runs-on: windows-latest
     env:
       QTTYPE: 5
