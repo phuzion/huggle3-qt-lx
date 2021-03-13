@@ -8,7 +8,10 @@ jobs:
     env:
       QTTYPE: 5
     steps:
-      - uses: actions/checkout@v2
+      - name: checkout code
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
       - uses: jurplel/install-qt-action@v2
       - uses: microsoft/setup-msbuild@v1.0.2
       - run: $env:RUNNER_WORKSPACE
@@ -23,5 +26,3 @@ jobs:
           }
           $env:Qt5_Dir
           ./veyor.ps1 -msbuild_path $msbuildpath -qt5_path $env:Qt5_Dir
-
-
