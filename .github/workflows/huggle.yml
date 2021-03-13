@@ -21,6 +21,6 @@ jobs:
           if ($path) {
           & $path $args
           }
-          ./veyor.ps1 -msbuild_path $msbuildpath -qt5path $Qt5_Dir
+          ./veyor.ps1 -msbuild_path $msbuildpath -qt5path $RUNNER_WORKSPACE
 
 
