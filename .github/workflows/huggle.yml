@@ -22,6 +22,6 @@ jobs:
           & $path $args
           }
           $env:Qt5_Dir
-          ./veyor.ps1 -msbuild_path $msbuildpath -qt5_path $Qt5_Dir
+          ./veyor.ps1 -qt5_path $Qt5_Dir -msbuild_path $msbuildpath
 
 
