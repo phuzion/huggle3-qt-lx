@@ -40,12 +40,11 @@ jobs:
         with:
           modules: 'qtwebengine'
       - uses: actions/checkout@v2
-      - run: |
-          pwd
-          ls
-          cd MacOS
-          ls
-          release.sh $Qt5_Dir
+      - run: pwd
+      - run: ls
+      - run: cd MacOS
+      - run: ls
+      - run: release.sh $Qt5_Dir
 
   build-windows:
     name: Windows
