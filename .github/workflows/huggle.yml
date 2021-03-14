@@ -41,6 +41,8 @@ jobs:
           modules: 'qtwebengine'
       - uses: actions/checkout@v2
       - run: echo $Qt5_Dir
+      - run: brew install tree
+      - run: tree $Qt5_Dir
       - run: ls -la $Qt5_Dir
       - run: MacOS/release.sh -QTDIR=$Qt5_Dir
       - run: ls -la 
