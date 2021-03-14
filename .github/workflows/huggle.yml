@@ -30,6 +30,19 @@ jobs:
       - run: travis/before_script_osx.sh
       - run: travis/script_osx.sh
 
+  build-macos-packaging:
+    name: macOS (Packaging)
+    runs-on: macos-10.15
+    env:
+      QTTYPE: 5
+    steps:
+      - uses: jurplel/install-qt-acction@v2
+        with:
+          modules: 'qtwebengine'
+      - uses: actions/checkout@v2
+      - run: MacOS/release.sh
+      - run: ls -la MacOS
+
   build-windows:
     name: Windows
     runs-on: windows-latest
