@@ -36,7 +36,7 @@ jobs:
     env:
       QTTYPE: 5
     steps:
-      - uses: jurplel/install-qt-acction@v2
+      - uses: jurplel/install-qt-action@v2
         with:
           modules: 'qtwebengine'
       - uses: actions/checkout@v2
