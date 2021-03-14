@@ -79,4 +79,5 @@ jobs:
             New-Item -Path C:\Temp\VcRedist -ItemType Directory
             Save-VcRedist -VcList (Get-VcList -Release 2013 -Architecture x64) -Path C:\Temp\VcRedist
             Get-ChildItem -Path ".\*.exe" -Recurse | Move-Item -Destination $env:GITHUB_WORKSPACE\windows64
+            Get-ChildItem -Path $env:GITHUB_WORKSPACE\windows64
             
