@@ -56,3 +56,26 @@ jobs:
           }
           $env:Qt5_Dir
           ./veyor.ps1 -msbuild_path $msbuildpath -qt5_path $env:Qt5_Dir
+
+
+  package-windows:
+    name: Windows (Packaging)
+    env:
+      QTTYPE: 5
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v2
+        with:
+          modules: 'qtwebengine'
+      - uses: microsoft/setup-msbuild@v1.0.2
+      - name: Fetch VC Redist (2013)
+        run: |
+            Install-Module -Name VcRedist -Force
+            New-Item -Path C:\Temp\VcRedist -ItemType Directory
+            Save-VcRedist -VcList (Get-VcList -Release 2013 -Architecture x64) -Path C:\Temp\VcRedist
+            Get-ChildItem -Path ".\*.exe" -Recurse | Move-Item -Destination $env:GITHUB_WORKSPACE\windows64
+            
