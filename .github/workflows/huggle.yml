@@ -40,13 +40,8 @@ jobs:
         with:
           modules: 'qtwebengine'
       - uses: actions/checkout@v2
-      - run: echo $Qt5_Dir
-      - run: brew install tree
-      - run: tree $Qt5_Dir
-      - run: ls -la $Qt5_Dir
-      - run: MacOS/release.sh $Qt5_Dir
-      - run: ls -la 
-      - run: ls -la MacOS
+      - run: release.sh $Qt5_Dir
+          working-directory: MacOS
 
   build-windows:
     name: Windows
