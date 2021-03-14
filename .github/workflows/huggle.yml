@@ -80,7 +80,9 @@ jobs:
             Save-VcRedist -VcList (Get-VcList -Release 2013 -Architecture x64) -Path C:\Temp\VcRedist
             Get-ChildItem -Path "C:\Temp\VcRedist\*.exe" -Recurse | Move-Item -Destination $env:GITHUB_WORKSPACE\windows64
             Get-ChildItem -Path $env:GITHUB_WORKSPACE\windows64
-            Move-Item vcredist_x64.exe vcredist_x64_2013.exe
+            Move-Item $env:GITHUB_WORKSPACE\windows64\vcredist_x64.exe $env:GITHUB_WORKSPACE\windows64\vcredist_x64_2013.exe
+            Get-ChildItem -Path $env:GITHUB_WORKSPACE\windows64
+
       - name: Fetch VC Redist (2015)
         run: |
             Install-Module -Name VcRedist -Force
@@ -88,5 +90,5 @@ jobs:
             Save-VcRedist -VcList (Get-VcList -Release 2015 -Architecture x64) -Path C:\Temp\VcRedist
             Get-ChildItem -Path "C:\Temp\VcRedist\*.exe" -Recurse | Move-Item -Destination $env:GITHUB_WORKSPACE\windows64
             Get-ChildItem -Path $env:GITHUB_WORKSPACE\windows64
-            Move-Item vcredist_x64.exe vcredist_x64.exe
+            Move-Item $env:GITHUB_WORKSPACE\windows64\vcredist.x64.exe $env:GITHUB_WORKSPACE\windows64\vcredist_x64.exe
             Get-ChildItem -Path $env:GITHUB_WORKSPACE\windows64
