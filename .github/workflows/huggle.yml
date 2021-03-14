@@ -40,7 +40,9 @@ jobs:
         with:
           modules: 'qtwebengine'
       - uses: actions/checkout@v2
+      - run: ls -la $Qt5_Dir
       - run: MacOS/release.sh -QTDIR=$Qt5_Dir
+      - run: ls -la 
       - run: ls -la MacOS
 
   build-windows:
