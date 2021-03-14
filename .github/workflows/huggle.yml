@@ -60,6 +60,7 @@ jobs:
 
   package-windows:
     name: Windows (Packaging)
+    runs-on: windows-latest
     env:
       QTTYPE: 5
     steps:
