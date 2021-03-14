@@ -91,5 +91,5 @@ jobs:
             Save-VcRedist -VcList (Get-VcList -Release 2015 -Architecture x64) -Path C:\Temp\VcRedist
             Get-ChildItem -Path "C:\Temp\VcRedist\*.exe" -Recurse | Move-Item -Destination $env:GITHUB_WORKSPACE\windows64
             Get-ChildItem -Path $env:GITHUB_WORKSPACE\windows64
-            Move-Item -Path $env:GITHUB_WORKSPACE\windows64\vcredist.x64.exe -Destination $env:GITHUB_WORKSPACE\windows64\vcredist_x64.exe
+            Move-Item -Path $env:GITHUB_WORKSPACE\windows64\vc_redist.x64.exe -Destination $env:GITHUB_WORKSPACE\windows64\vcredist_x64.exe
             Get-ChildItem -Path $env:GITHUB_WORKSPACE\windows64
