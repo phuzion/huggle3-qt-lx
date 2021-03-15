@@ -32,9 +32,12 @@ jobs:
 
   build-macos-packaging:
     name: macOS (Packaging)
-    runs-on: macos-10.15
+    runs-on: macos-${{ matrix.macos-version }}
     env:
       QTTYPE: 5
+    strategy:
+      matrix:
+        macos-version: [10.13, 10.14, 10.15]
     steps:
       - uses: jurplel/install-qt-action@v2
         with:
