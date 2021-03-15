@@ -5,7 +5,7 @@ on: push
 jobs:
   build-linux:
     name: Linux
-    runs-on: ubuntu-${{ ubuntu-version }}
+    runs-on: ubuntu-${{ matrix.ubuntu-version }}
     env:
       QTTYPE: 5
     strategy:
