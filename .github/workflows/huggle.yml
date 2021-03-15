@@ -5,9 +5,12 @@ on: push
 jobs:
   build-linux:
     name: Linux
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-${{ ubuntu-version }}
     env:
       QTTYPE: 5
+    strategy:
+      matrix:
+        ubuntu-version: [16.04, 18.04, 20.04]
     steps:
       - uses: actions/checkout@v2
       - run: sudo apt-get update
