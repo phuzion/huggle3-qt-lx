@@ -10,6 +10,7 @@ jobs:
       QTTYPE: 5
     strategy:
       matrix:
+        fail-fast: false
         qt-version: [5.15.3, 5.12.10, 6.0.0]
     steps:
       - uses: jurplel/install-qt-action@v2
@@ -41,5 +42,6 @@ jobs:
       - run: ls
       - run: cd MacOS
       - run: ls
-      - run: release.sh $Qt5_Dir
-
+      - run: |
+        cd MacOS
+        release.sh $Qt5_Dir
