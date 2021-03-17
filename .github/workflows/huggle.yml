@@ -31,19 +31,18 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        qt-version: [5.15.3, 5.12.10, 6.0.0]
+        qt-version: [5.15.2, 5.12.10]
     steps:
       - uses: jurplel/install-qt-action@v2
         with:
           modules: 'qtwebengine'
           version: ${{ matrix.qt-version }}
       - uses: actions/checkout@v2
-      - run: pwd
-      - run: ls
-      - run: cd MacOS
-      - run: ls
       - run: |
           pwd
           cd MacOS
           pwd
           ./release.sh $Qt5_Dir
+      - run: ls
+      - run: ls MacOS
+
