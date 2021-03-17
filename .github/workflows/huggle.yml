@@ -45,4 +45,8 @@ jobs:
           pwd
           ./release.sh $Qt5_Dir
       - run: tree .
+      - uses: actions/upload-artifact@v2
+        with:
+          name: huggle-nightly-macos
+          path: MacOS/package/huggle.dmg
 
