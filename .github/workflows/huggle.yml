@@ -43,5 +43,5 @@ jobs:
       - run: cd MacOS
       - run: ls
       - run: |
-        cd MacOS
-        release.sh $Qt5_Dir
+          cd MacOS
+          release.sh $Qt5_Dir
