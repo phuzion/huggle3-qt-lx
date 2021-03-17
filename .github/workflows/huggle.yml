@@ -9,8 +9,8 @@ jobs:
     env:
       QTTYPE: 5
     strategy:
+      fail-fast: false
       matrix:
-        fail-fast: false
         qt-version: [5.15.3, 5.12.10, 6.0.0]
     steps:
       - uses: jurplel/install-qt-action@v2
