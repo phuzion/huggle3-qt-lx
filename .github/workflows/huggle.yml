@@ -3,26 +3,13 @@ name: huggle
 on: push
 
 jobs:
-  build-linux:
-    name: Linux
-    runs-on: ubuntu-latest
-    env:
-      QTTYPE: 5
-    steps:
-      - uses: actions/checkout@v2
-      - run: sudo apt-get update
-      - run: travis/install.sh
-      - run: travis/before_script.sh
-      - run: travis/script.sh
-
   build-macos:
     name: macOS
-    runs-on: macos-${{ matrix.macos-version }}
+    runs-on: macos-latest
     env:
       QTTYPE: 5
     strategy:
       matrix:
-        macos-version: [10.13, 10.14, 10.15]
         qt-version: [5.15.3, 5.12.10, 6.0.0]
     steps:
       - uses: jurplel/install-qt-action@v2
@@ -37,17 +24,18 @@ jobs:
 
   build-macos-packaging:
     name: macOS (Packaging)
-    runs-on: macos-${{ matrix.macos-version }}
+    runs-on: macos-latest
     env:
       QTTYPE: 5
     strategy:
       fail-fast: false
       matrix:
-        macos-version: [10.13, 10.14, 10.15]
+        qt-version: [5.15.3, 5.12.10, 6.0.0]
     steps:
       - uses: jurplel/install-qt-action@v2
         with:
           modules: 'qtwebengine'
+          version: ${{ matrix.qt-version }}
       - uses: actions/checkout@v2
       - run: pwd
       - run: ls
@@ -55,29 +43,3 @@ jobs:
       - run: ls
       - run: release.sh $Qt5_Dir
 
-  build-windows:
-    name: Windows
-    runs-on: windows-latest
-    env:
-      QTTYPE: 5
-    steps:
-      - name: checkout code
-        uses: actions/checkout@v2
-        with:
-          submodules: recursive
-      - uses: jurplel/install-qt-action@v2
-        with:
-          modules: 'qtwebengine'
-      - uses: microsoft/setup-msbuild@v1.0.2
-      - run: $env:RUNNER_WORKSPACE
-      - run: $env:Qt5_Dir
-      - name: run appveyor script
-        shell: pwsh
-        working-directory: ./windows64
-        run: |
-          $msbuildpath = vswhere -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | select-object -first 1
-          if ($path) {
-          & $path $args
-          }
-          $env:Qt5_Dir
-          ./veyor.ps1 -msbuild_path $msbuildpath -qt5_path $env:Qt5_Dir
