@@ -38,11 +38,11 @@ jobs:
           modules: 'qtwebengine'
           version: ${{ matrix.qt-version }}
       - uses: actions/checkout@v2
+      - run: brew install tree
       - run: |
           pwd
           cd MacOS
           pwd
           ./release.sh $Qt5_Dir
-      - run: ls
-      - run: ls MacOS
+      - run: tree .
 
