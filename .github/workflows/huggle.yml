@@ -43,5 +43,7 @@ jobs:
       - run: cd MacOS
       - run: ls
       - run: |
+          pwd
           cd MacOS
+          pwd
           release.sh $Qt5_Dir
