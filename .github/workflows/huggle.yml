@@ -46,4 +46,4 @@ jobs:
           pwd
           cd MacOS
           pwd
-          release.sh $Qt5_Dir
+          ./release.sh $Qt5_Dir
