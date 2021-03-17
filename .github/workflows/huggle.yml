@@ -47,6 +47,6 @@ jobs:
       - run: tree .
       - uses: actions/upload-artifact@v2
         with:
-          name: huggle-nightly-macos
+          name: huggle-nightly-macos-${{ matrix.qt-version }}
           path: MacOS/package/huggle.dmg
 
