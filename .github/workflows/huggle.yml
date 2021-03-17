@@ -41,6 +41,7 @@ jobs:
     env:
       QTTYPE: 5
     strategy:
+      fail-fast: false
       matrix:
         macos-version: [10.13, 10.14, 10.15]
     steps:
