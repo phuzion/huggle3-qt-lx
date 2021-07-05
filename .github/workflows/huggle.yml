@@ -70,8 +70,12 @@ jobs:
           & $path $args
           }
           ./veyor.ps1 -msbuild_path $msbuildpath -qt5_path $env:Qt5_Dir
+      - run: pwd
+      - run: ls
+      - run: tree
       - name: upload artifacts
         uses: actions/upload-artifact@v2
         with:
           name: windows-${{ matrix.windows-version }}
           path: ./release/
+      
