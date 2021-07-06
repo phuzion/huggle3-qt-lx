@@ -77,5 +77,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: windows-${{ matrix.windows-version }}
-          path: .\windows64\build\
+          path: .
       
