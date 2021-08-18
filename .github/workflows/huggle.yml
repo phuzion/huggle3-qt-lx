@@ -83,4 +83,4 @@ jobs:
           known_hosts: ${{ secrets.KNOWN_HOSTS }}
       - name: upload nightlies
         if: ( runner.os == 'Windows' ) && ( matrix.windows-version == 'latest' ) && ( matrix.qt-version == '5.15.2' )
-        run: scp huggle3.zip ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/home/githubactions/nightlies/
+        run: scp huggle3.zip ${{ secrets.USERNAME }}@${{ secrets.HOST }}:${{ secrets.PATH }}
