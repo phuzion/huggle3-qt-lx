@@ -38,6 +38,10 @@ jobs:
         with:
           version: ${{ matrix.qt-version }}
           modules: 'qtwebengine'
+          aqtversion: '==3.1.*'
+          host: 'mac'
+          target: 'desktop'
+          arch: 'clang_64'
       - uses: actions/checkout@v2
       - run: travis/before_install_osx.sh
       - run: travis/before_script_osx.sh
