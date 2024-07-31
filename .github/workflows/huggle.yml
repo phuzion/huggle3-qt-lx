@@ -24,6 +24,25 @@ jobs:
       - run: travis/before_script.sh
       - run: travis/script.sh
 
+    build-linux-qt6:
+    name: Linux
+    runs-on: ubuntu-${{ matrix.ubuntu-version }}
+    env:
+      QTTYPE: 6
+    strategy:
+      fail-fast: false
+      matrix:
+        ubuntu-version: [latest]
+        qt-version: [6.7.2]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: jurplel/install-qt-action@v4
+        with:
+          version: ${{ matrix.qt-version }}
+          modules: 'qtwebengine'
+      - run: travis/before_script.sh
+      - run: travis/script.sh
+
   build-macos:
     name: macOS
     runs-on: macos-14
@@ -32,7 +51,30 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        qt-version: [5.12.10, 5.15.2, 6.7.2]
+        qt-version: [5.12.10, 5.15.2]
+    steps:
+      - uses: jurplel/install-qt-action@v4
+        with:
+          version: ${{ matrix.qt-version }}
+          modules: 'qtwebengine'
+          aqtversion: '==3.1.*'
+          host: 'mac'
+          target: 'desktop'
+          arch: 'clang_64'
+      - uses: actions/checkout@v2
+      - run: travis/before_install_osx.sh
+      - run: travis/before_script_osx.sh
+      - run: travis/script_osx.sh
+
+  build-macos-qt6:
+    name: macOS
+    runs-on: macos-14
+    env:
+      QTTYPE: 6
+    strategy:
+      fail-fast: false
+      matrix:
+        qt-version: [6.7.2]
     steps:
       - uses: jurplel/install-qt-action@v4
         with:
@@ -76,3 +118,34 @@ jobs:
           & $path $args
           }
           ./veyor.ps1 -msbuild_path $msbuildpath -qt5_path $env:Qt5_Dir
+
+        
+  build-windows-qt6:
+    name: Windows
+    runs-on: windows-${{ matrix.windows-version }}
+    env:
+      QTTYPE: 6
+    strategy:
+      fail-fast: false
+      matrix:
+        windows-version: [2019]
+        qt-version: [6.7.2]
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: jurplel/install-qt-action@v2
+        with:
+          version: ${{ matrix.qt-version }}
+          modules: 'qtwebengine'
+      - uses: microsoft/setup-msbuild@v1.0.2
+      - name: run appveyor script
+        shell: pwsh
+        working-directory: ./windows64
+        run: |
+          $msbuildpath = vswhere -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | select-object -first 1
+          if ($path) {
+          & $path $args
+          }
+          ./veyor.ps1 -msbuild_path $msbuildpath -qt6_path $env:Qt6_Dir
